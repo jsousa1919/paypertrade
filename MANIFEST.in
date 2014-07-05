@@ -1,0 +1,3 @@
+include paypertrade/config/deployment.ini_tmpl
+recursive-include paypertrade/public *
+recursive-include paypertrade/templates *

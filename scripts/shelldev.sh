@@ -1,4 +1,5 @@
 #!/bin/bash
+PROJECT="$( cd "$( dirname "${BASH_SOURCE[0]}" )"/.. && pwd )"
 
-source buildconf.sh
-CMD="paster shell tmp.ini"
+source $PROJECT/scripts/buildconf.sh
+paster shell tmp.ini

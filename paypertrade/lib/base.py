@@ -5,6 +5,7 @@ Provides the BaseController class for subclassing.
 from pylons.controllers import WSGIController
 from pylons.templating import render_mako as render
 
+from paypertrade.lib import helpers as h
 from paypertrade.model.meta import Session
 
 class BaseController(WSGIController):

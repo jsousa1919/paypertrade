@@ -1,9 +1,16 @@
 import logging
+
+from pylons import config, tmpl_context as c
+from pylons.templating import render_mako
 import sqlalchemy as sa
 
-from ppt import model
+from paypertrade import model
+from paypertrade.lib.base import *
 
 
 log = logging.getLogger(__name__)
 
-class IndexController(
+class BaseController(BaseController):
+    def index(self):
+        c.users = model.Session.query(model.User).all()
+        return render_mako('index.mako')

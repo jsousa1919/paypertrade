@@ -9,5 +9,5 @@ git push
 
 cd $PROJECT
 git pull
-pptenv
+source /opt/PayPerTrade/bin/activate
 ./scripts/runprod.sh restart

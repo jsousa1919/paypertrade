@@ -4,7 +4,7 @@ PROJECT="/opt/display_code"
 REPO="/opt/pptrepo"
 PIDFILE="$REPO/paster.pid"
 LOGFILE="var/log/paypertrade/out.log"
-CONFIG="$PROJECT/development.ini"
+CONFIG="$PROJECT/tmp.ini"
 
 source /lib/lsb/init-functions
 
@@ -23,6 +23,7 @@ EOF
 }
 
 start() {
+    source $PROJECT/scripts/buildconf.sh
     paster serve --daemon --pid-file=$PIDFILE --log-file=$LOG $CONFIG start
 }
 

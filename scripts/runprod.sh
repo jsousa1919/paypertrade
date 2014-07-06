@@ -42,7 +42,6 @@ status() {
     exit $status
 }
 
-OPTIND=2
 while getopts "h?c:l:p:" OPTION
 do
     case $OPTION in
@@ -68,7 +67,7 @@ done
                                    
 
 cd $PROJECT
-case "(" in
+case "$1" in
     start)
         start
         exit 1

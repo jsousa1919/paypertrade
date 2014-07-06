@@ -10,4 +10,5 @@ git push
 cd $PROJECT
 git pull
 source /opt/PayPerTrade/bin/activate
+alembic upgrade head
 ./scripts/runprod.sh restart

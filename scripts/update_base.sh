@@ -9,4 +9,5 @@ git push
 
 cd $PROJECT
 git pull
+pptenv
 ./scripts/runprod.sh restart

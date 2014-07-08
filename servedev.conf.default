@@ -1,2 +1,2 @@
-http_port=80
+http_port=8080
 sqlalchemy.url=postgresql://paypertrade:paypertrade@localhost:5432/paypertrade

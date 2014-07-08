@@ -3,6 +3,7 @@
 PROJECT="/opt/display_code"
 export PYTHONPATH=$PROJECT
 REPO="/opt/pptrepo"
+source ~/.bashrc
 
 cd $REPO
 git push

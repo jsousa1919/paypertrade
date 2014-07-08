@@ -12,4 +12,12 @@ scripts/buildconf.sh
 echo "export PYTHONPATH=$PYTHONPATH:`pwd`" >> ~/.bashrc
 source ~/.bashrc
 alembic upgrade head
+
+echo http://localhost:8080
+echo http://localhost:8080/test.html
+echo http://localhost:8080/test/test.html
+echo http://localhost:8080/base/index
+echo http://localhost:8080/base/error
+echo http://localhost:8080/base/template_error
+
 scripts/servedev.sh

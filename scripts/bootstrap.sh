@@ -9,5 +9,7 @@ psql -c "grant all on database paypertrade to paypertrade";
 EOF
 cp servedev.conf.default servedev.conf
 scripts/buildconf.sh
+echo "export PYTHONPATH=`pwd`" >> ~/.bashrc
+source ~/.bashrc
 alembic upgrade head
 scripts/servedev.sh

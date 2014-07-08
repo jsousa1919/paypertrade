@@ -9,5 +9,5 @@ psql -c "grant all on database paypertrade to paypertrade";
 EOF
 cp servedev.conf.default servedev.conf
 scripts/buildconf.sh
-alembic migrate HEAD
+alembic migrate head
 scripts/servedev.sh

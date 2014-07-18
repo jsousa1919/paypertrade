@@ -31,8 +31,6 @@ meta = __import__("%s.model.meta" % wsgi_app.config['pylons.package']).model.met
 # for 'autogenerate' support
 from paypertrade import model
 target_metadata = model.Base.metadata
-#target_metadata = None
-
 
 def run_migrations_offline():
     """Run migrations in 'offline' mode.
@@ -72,9 +70,9 @@ def run_migrations_online():
         )
 
     context.configure(
-                connection=connection,
-                target_metadata=target_metadata
-                )
+        connection=connection,
+        target_metadata=target_metadata,
+    )
 
     try:
         with context.begin_transaction():

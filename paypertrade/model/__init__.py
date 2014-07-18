@@ -1,6 +1,6 @@
 import logging
 
-from paypertrade.model.meta import Session, Base
+from paypertrade.model.meta import Session
 from paypertrade.model.core import *
 
 log = logging.getLogger(__name__)

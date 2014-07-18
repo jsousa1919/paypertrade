@@ -1,6 +1,4 @@
-from pylons import url
-
-from paypertrade.lib.base import *
+from pylons import url, session, request
 
 """Helper functions
 

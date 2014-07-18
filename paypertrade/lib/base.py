@@ -1,4 +1,5 @@
 import hashlib
+import logging
 
 from pylons import config, request, response, session, tmpl_context as c, url
 from pylons.controllers import WSGIController
@@ -7,6 +8,7 @@ from pylons.templating import render_mako as render
 import sqlalchemy as sqa
 
 from paypertrade import model
+from paypertrade.lib import helpers as h
 
 COOKIE_SALT = "WE'RE SAILORS ON THE MOON, WE CARRY A HARPOON!"
 

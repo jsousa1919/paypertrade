@@ -1,11 +1,15 @@
 from paypertrade.lib.base import *
 
-class AccountController(BaseController):
+class AccountController(BaseCtrl):
     def signin(self):
         if h.user():
-            self.redirect_to(controller='base', action='index')
+            h.redirect(controller='account', action='home')
         else:
-            render('/account/signin.mako')
+            return render('/account/signin.mako')
+
+    def signout(self):
+        h.clear_user()
+        h.redirect_to(controller='base', action='index')
 
     #TODO https
     def authenticate(self):
@@ -25,6 +29,6 @@ class AccountController(BaseController):
 
     def home(self):
         if h.user():
-            render('/account/home.mako')
+            return render('/account/home.mako')
         else:
             h.redirect_to(controller='account', action='signin')

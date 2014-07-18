@@ -1,12 +1,14 @@
-from pylons import url, session, request
+import hashlib
+import time
 
-"""Helper functions
+from pylons import url, session, request, response
+from pylons.controllers.util import redirect
 
-Consists of functions to typically be used within templates, but also
-available to Controllers. This module is available to templates as 'h'.
-"""
-# Import helpers as desired, or define your own, ie:
-#from webhelpers.html.tags import checkbox, password
+from paypertrade import model
+from paypertrade.lib.helpers import superhelpers as sh
+
+COOKIE_SALT = "WE'RE SAILORS ON THE MOON, WE CARRY A HARPOON!"
+
 
 def user():
     user = session.get('user')
@@ -25,6 +27,13 @@ def save_user(user, remember=False):
     if remember:
         set_cookie_user(user)
 
+def clear_user():
+    session['user'] = None
+    session.save()
+    response.set_cookie('user', '')
+    request.environ['REMOTE_USER'] = ''
+
+
 def set_cookie_user(user):
     thyme = time.time()
     secret_str = '%s:%d:%d' % (get_cookie_secret(user.id, thyme), thyme, user.id)
@@ -38,18 +47,19 @@ def get_cookie_secret(user_id, thyme):
     return hashlib.md5(str(user_id) + COOKIE_SALT + str(thyme)).hexdigest()
 
 def get_cookie_user():
+    from paypertrade import model
     user = None
     try:
         cookie_str = request.cookies.get('user')
         if cookie_str:
             cookie_tuple = cookie_str.split(':')
             if len(cookie_tuple) == 3:
-                user_id = safe_int(cookie_tuple[2])
-                session = safe_int(cookie_tuple[1])
+                user_id = sh.safe_int(cookie_tuple[2])
+                session = sh.safe_int(cookie_tuple[1])
                 obj = model.User.get(user_id)
                 if obj.token:
                     obj_tuple = obj.token.split(':')
-                    last_session = safe_int(obj_tuple[1])
+                    last_session = sh.safe_int(obj_tuple[1])
                     if session == last_session:
                         if cookie_tuple[0] == obj_tuple[0]:
                             user = obj

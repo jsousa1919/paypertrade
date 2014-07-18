@@ -1,0 +1,2 @@
+'HTTPFound' object has no attribute 'exception' ????
+Downgrade WebOb below 1.4 to 1.3.1

@@ -7,6 +7,7 @@ from sqlalchemy.orm import relationship, backref
 from sqlalchemy.schema import Table, Column, ForeignKey
 from sqlalchemy.types import String, Integer
 
+from paypertrade.lib.helpers import superhelpers as sh
 from paypertrade.model.meta import Session, Base
 
 class User(Base):
@@ -26,13 +27,13 @@ class User(Base):
     def create(cls, email, password):
         user = cls()
         user.email = email
-        user.password = bcrypt.hashpw(password, user.password_salt)
+        user.password = bcrypt.hashpw(password, bcrypt.gensalt())
         Session.add(user)
         Session.commit()
         return user
 
     def authenticate(self, password):
-        return bcrypt.checkpw(password, user.password)
+        return bcrypt.checkpw(password, self.password)
 
 
 class Book(Base):

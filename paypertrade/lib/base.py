@@ -1,5 +1,6 @@
 import hashlib
 import logging
+from simplejson import JSONDecodeError
 
 from pylons import config, request, response, session, tmpl_context as c, url
 from pylons.controllers import WSGIController
@@ -10,9 +11,8 @@ import sqlalchemy as sqa
 from paypertrade import model
 from paypertrade.lib import helpers as h
 
-COOKIE_SALT = "WE'RE SAILORS ON THE MOON, WE CARRY A HARPOON!"
 
-class BaseController(WSGIController):
+class BaseCtrl(WSGIController):
 
     def __call__(self, environ, start_response):
         """Invoke the Controller"""
@@ -24,9 +24,9 @@ class BaseController(WSGIController):
         finally:
             model.Session.remove()
 
-    def data(key, default):
+    def data(self, key, default=None):
         try:
             return request.params.get(key) or request.json.get(key)
-        except KeyError:
+        except (KeyError, JSONDecodeError) as e:
             return None
 

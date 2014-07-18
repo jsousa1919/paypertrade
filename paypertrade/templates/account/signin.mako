@@ -1,4 +1,8 @@
-<form type="POST" action="${ h.url_for(controller='account', action='authenticate') }">
+%if h.user():
+    you are signed in why are you here?
+%endif
+
+<form method="post" action="${ h.url(controller='account', action='authenticate') }">
     <div>
         <input name="email" placeholder="Email" />
     </div>

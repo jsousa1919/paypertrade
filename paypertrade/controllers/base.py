@@ -3,7 +3,7 @@ from paypertrade.lib.base import *
 log = logging.getLogger(__name__)
 
 
-class BaseController(BaseController):
+class BaseController(BaseCtrl):
     def index(self):
         c.users = model.Session.query(model.User).all()
         if h.user():

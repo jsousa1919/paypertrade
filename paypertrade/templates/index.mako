@@ -1,6 +1,6 @@
 <div>
     %if h.user():
-        You are signed in
+        You are signed in ${ h.user().name }
         <a href="${ h.url(controller='account', action='signout') }">Sign out</a>
     %else:
         You are sooo sleeping on the couch tonight

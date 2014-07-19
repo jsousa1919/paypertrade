@@ -22,7 +22,7 @@ class AccountController(BaseCtrl):
         #TODO differentiate between post and json requests
         # best to add a helper in global use in this case
         if user and user.authenticate(password):
-            h.save_user(user, remember=remember)
+            h.save_user(user.id, remember=remember)
             h.redirect_to(controller='account', action='home')
         else:
             h.redirect_to(controller='base', action='index')

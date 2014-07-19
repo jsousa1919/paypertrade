@@ -1,10 +1,10 @@
 <div>
     %if h.user():
         You are signed in ${ h.user().name }
-        <a href="${ h.url(controller='account', action='signout') }">Sign out</a>
+        <a href="${ h.url_for(controller='account', action='signout') }">Sign out</a>
     %else:
         You are sooo sleeping on the couch tonight
-        <a href="${ h.url(controller='account', action='signin') }">Sign in</a>
+        <a href="${ h.url_for(controller='account', action='signin') }">Sign in</a>
     %endif
 </div>
 <div style="min-height: 100px; background-color: red;">

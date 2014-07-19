@@ -3,7 +3,7 @@ from paypertrade.lib.base import *
 class AccountController(BaseCtrl):
     def signin(self):
         if h.user():
-            h.redirect(controller='account', action='home')
+            h.redirect_to(controller='account', action='home')
         else:
             return render('/account/signin.mako')
 
@@ -32,3 +32,11 @@ class AccountController(BaseCtrl):
             return render('/account/home.mako')
         else:
             h.redirect_to(controller='account', action='signin')
+
+    def google_callback(self):
+        error = request.params.get('error')
+        if error:
+            return error
+
+        code = request.params.get('code')
+        return code

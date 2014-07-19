@@ -2,5 +2,6 @@ pylons
 sqlalchemy
 alembic
 psycopg2
-scrypt
 py-bcrypt
+velruse
+-I WebOb==1.3.1

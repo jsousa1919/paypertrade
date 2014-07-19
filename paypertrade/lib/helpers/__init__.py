@@ -1,7 +1,7 @@
 import hashlib
 import time
 
-from pylons import url, session, request, response
+from pylons import url, session, request, response, config
 from pylons.controllers.util import redirect
 
 from paypertrade import model
@@ -70,7 +70,44 @@ def get_cookie_user():
                             model.Session.commit()
     except:
         log.error('Error getting user cookie')
-    return user.id
+    return user.id if user else None
 
 def redirect_to(**kw):
-    redirect(url(**kw), code=302)
+    redirect(url_for(**kw), code=302)
+
+def url_for(*arg, **kw):
+    if not kw.get('action'):
+        kw['action'] = 'index'
+
+    if not kw.get('controller'):
+        kw['controller'] = current_route('controller')
+
+
+    if request.environ.get('HTTP_X_URL_SCHEME', '').lower() == 'https':
+        prefix = 'https'
+    elif kw.get('secure'):
+        prefix = 'https'
+    else:
+        prefix = 'http'
+
+    if 'secure' in kw:
+        del(kw['secure'])
+
+    hashtag = ''
+    if kw.get('hashtag'):
+        hashtag = '#%s' % kw.get('hashtag')
+        del(kw['hashtag'])
+
+    app_host = config.get('app_host')
+    if kw.get('shorten'):
+        if app_host.startswith('www.'):
+            app_host = app_host[4:]
+        del(kw['shorten'])
+
+    path = url(*arg, **kw)
+
+    if path.startswith('http'):
+        return path
+
+    return '%s://%s%s%s' % (prefix, app_host, path, hashtag)
+

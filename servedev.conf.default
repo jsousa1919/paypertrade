@@ -1,2 +1,4 @@
 http_port=8080
-sqlalchemy.url=postgresql://paypertrade:paypertrade@localhost:5432/paypertrade
+sqlalchemy_url=postgresql://paypertrade:paypertrade@localhost:5432/paypertrade
+app_host=paypertrade.com
+google_client_id=334924061900-1nf4jpui5jvifpcoq8cvh7k8ir5dpv5a.apps.googleusercontent.com

@@ -40,3 +40,6 @@ class AccountController(BaseCtrl):
 
         code = request.params.get('code')
         return code
+
+    def signup(self):
+        return render('account/signup.mako')

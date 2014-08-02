@@ -1,3 +1,8 @@
+<%inherit file="../base/html.mako" />
+<%def name="title()">Signin</%def>
+<%def name="head()"></%def>
+<%def name="ready()"></%def>
+
 %if h.user():
     you are signed in why are you here?
 %endif
@@ -17,4 +22,12 @@
         <input type="submit" value="Submit" />
     </div>
 </form>
-<a href="https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=${ config.get('google_client_id') }&redirect_uri=${ h.url_for(controller='account', action='google_callback', secure=True) }&scope=profile email">Sign in with Google</a>
+<span id="signinButton">
+    <span
+    class="g-signin"
+    data-callback="authenticate"
+    data-clientid="${ config.get('google_client_id') }"
+    data-cookiepolicy="single_host_origin"
+    data-scope="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/books">
+    </span>
+</span>

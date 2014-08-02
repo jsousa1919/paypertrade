@@ -9,7 +9,7 @@ class BaseController(BaseCtrl):
         if h.user():
             c.status = 'AUTHENTICATED!'
         else:
-            'BE GONE HOODLUM!'
+            c.status = 'BE GONE HOODLUM!'
         return render('index.mako')
 
     def template_error(self):

@@ -34,6 +34,7 @@ class AccountController(BaseCtrl):
             h.redirect_to(controller='account', action='signin')
 
     def google_callback(self):
+        import ipdb; ipdb.set_trace()
         error = request.params.get('error')
         if error:
             return error

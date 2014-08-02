@@ -2,7 +2,7 @@
     %if h.user():
         You are signed in ${ h.user().name }
         <a href="${ h.url_for(controller='account', action='signout') }">Sign out</a>
-    %else:a
+    %else:
         <div>
             You are sooo sleeping on the couch tonight unless you 
             <a href="${ h.url_for(controller='account', action='signin') }">Sign in</a>

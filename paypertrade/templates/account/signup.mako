@@ -1,3 +1,5 @@
+<%inherit file="../base/html.mako" />
+
 Sign up on paypertrade
 <div>
     <form href="${ h.url_for(controller='account', action='signup') }" method="POST">

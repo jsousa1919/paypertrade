@@ -24,6 +24,6 @@ def make_map(config):
     map.connect('/{controller}/{action}/')
     map.connect('/{controller}/{action}/{id}')
     map.connect('/{controller}/{action}/{id}/')
-    map.connect('/', controller='account', action='home')
+    map.connect('/', controller='base', action='index')
 
     return map

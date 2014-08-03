@@ -1,0 +1,23 @@
+@import "variables";
+
+body {
+  padding-top: 2em;
+  #header {
+    background-color: $primary;
+    border-radius: 3em;
+    box-shadow: 0 0 1em $primaryDark;
+    height: 3em;
+    width: 100%;
+    .logo {
+      font-size: 3em;
+      font-weight: bold;
+      line-height: 100%;
+    }
+    .headers {
+      padding-top: 0.7em;
+    }
+  }
+  #body {
+    padding: 2em;
+  }
+}

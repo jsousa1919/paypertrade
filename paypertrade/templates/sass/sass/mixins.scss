@@ -1,0 +1,16 @@
+@import "variables";
+
+@for $i from 1 through 4 {
+  .padding#{$i} {
+    padding: #{$i}em;
+  }
+  .margin#{$i} {
+    margin: #{$i}em;
+  }
+  .top#{$i} {
+    margin-top: #{$i}em;
+  }
+  .left#{$i} {
+    margin-left: #{$i}em;
+  }
+}

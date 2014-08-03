@@ -1,3 +1,6 @@
+<%inherit file='html.mako' />
+<%def name='title()'>Welcome!</%def>
+
 <div>
     %if h.user():
         You are signed in ${ h.user().name }

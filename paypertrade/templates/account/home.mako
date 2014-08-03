@@ -1,3 +1,5 @@
+<%inherit file="../base/html.mako" />
+
 congratulations!
 %if h.user():
     Oh hey look who signed in, that shithead ${ h.user().name }

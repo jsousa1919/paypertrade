@@ -3,3 +3,4 @@ python-virtualenv
 postgresql
 python-dev
 libpq-dev
+ruby-compass

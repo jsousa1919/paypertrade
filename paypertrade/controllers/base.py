@@ -10,7 +10,7 @@ class BaseController(BaseCtrl):
             c.status = 'AUTHENTICATED!'
         else:
             c.status = 'BE GONE HOODLUM!'
-        return render('index.mako')
+        return render('base/index.mako')
 
     def template_error(self):
         c.users = model.Session.query(model.User).all()

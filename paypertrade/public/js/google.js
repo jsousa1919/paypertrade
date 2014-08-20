@@ -1,8 +1,9 @@
-function authenticate(authResult) {
+function google_authenticate(authResult) {
     if (authResult['status']['signed_in']) {
+        $.GlobalCtrl.google_login(authResult);
         gapi.client.load('oauth2', 'v2', function() {
             gapi.client.oauth2.userinfo.get().execute(function(resp) {
-                console.log(resp.email);
+                $.GlobalCtrl.$broadcast('google_signup', resp);
             })
         });
     } else {

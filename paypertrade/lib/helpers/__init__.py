@@ -33,7 +33,6 @@ def clear_user():
     response.set_cookie('user_id', '')
     request.environ['REMOTE_USER'] = ''
 
-
 def set_cookie_user(user_id):
     thyme = time.time()
     secret_str = '%s:%d:%d' % (get_cookie_secret(user_id, thyme), thyme, user_id)

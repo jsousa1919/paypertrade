@@ -18,16 +18,29 @@ class User(Base):
     }
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True)
-    email = Column(String(64))
-    password = Column(String(256), nullable=False)
-    token = Column(String(64))
+    email = Column(String(64), unique=True)
+    password = Column(String(256))
+    google_id = Column(String(256))
+    google_token = Column(String(256))
     name = Column(String(64))
 
     @classmethod
-    def create(cls, email, password):
+    def create(cls, email, password, **kwargs):
         user = cls()
         user.email = email
         user.password = bcrypt.hashpw(password, bcrypt.gensalt())
+        user.__dict__.update(kwargs)
+        Session.add(user)
+        Session.commit()
+        return user
+
+    @classmethod
+    def create_google(cls, email, uid, token, **kwargs):
+        user = cls()
+        user.email = email
+        user.googe_id = uid
+        user.google_token = token
+        user.__dict__.update(kwargs)
         Session.add(user)
         Session.commit()
         return user

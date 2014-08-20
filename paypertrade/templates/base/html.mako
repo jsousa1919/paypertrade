@@ -3,13 +3,12 @@
         <title>PayPerTrade :: ${ self.title() }</title>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.js"></script>
-        <script src="https://plus.google.com/js/client:plusone.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js"></script>
         <script>
             <%include file="../js/consts.js.mako" />
-            <%include file="../js/google.js.mako" />
-            <%include file="../js/angular_global.js.mako" />
         </script>
+        <script src="/js/angular_global.js"></script>
+        <script src="/js/google.js"></script>
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.css" rel="stylesheet" />
         <link href="/css/base.css" rel="stylesheet" />
         <link href="/css/mixins.css" rel="stylesheet" />
@@ -43,6 +42,14 @@
         <div id="body" class="row-fluid">
             ${ next.body() }
         </div>
+        <script type="text/javascript">
+            (function() {
+                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                po.src = 'https://apis.google.com/js/client:plusone.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                }
+            )();
+         </script>
     </body>
 </html>
 <%def name="head()"></%def>

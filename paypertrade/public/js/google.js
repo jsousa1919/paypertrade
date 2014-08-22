@@ -3,7 +3,7 @@ function google_authenticate(authResult) {
         $.GlobalCtrl.google_login(authResult);
         gapi.client.load('oauth2', 'v2', function() {
             gapi.client.oauth2.userinfo.get().execute(function(resp) {
-                $.GlobalCtrl.$broadcast('google_signup', resp);
+                $.GlobalCtrl.$broadcast('google_signin', resp);
             })
         });
     } else {

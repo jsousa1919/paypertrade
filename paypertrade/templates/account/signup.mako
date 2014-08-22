@@ -1,5 +1,5 @@
 <%inherit file="../base/html.mako" />
-
+<%def name="title()">Welcome to PayPerBook, we love you</%def>
 <%def name="head()">
     <script>
         $.PayPerTrade.controller('SignupCtrl', function($scope, $http) {
@@ -18,7 +18,7 @@
                     alert(resp);
                 });
             };
-            $scope.$on('google_signup', function(event, resp) {
+            $scope.$on('google_signin', function(event, resp) {
                 $scope.email = resp.email;
                 $scope.name = resp.given_name;
                 $scope.google_id = resp.id;

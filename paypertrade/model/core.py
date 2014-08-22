@@ -45,8 +45,13 @@ class User(Base):
         Session.commit()
         return user
 
-    def authenticate(self, password):
-        return bcrypt.checkpw(password, self.password)
+    def authenticate(self, password=None, google_token=None):
+        if google_token:
+            # TODO best practices on secure, reversible, token storage
+            # TODO token refresh
+            return user.google_token == google_token
+        else:
+            return bcrypt.checkpw(password or '', self.password)
 
 
 class Book(Base):

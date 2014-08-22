@@ -23,12 +23,12 @@ $.PayPerTrade.directive('loginForm', function ($http) {
         },
         controller: function($scope) {
             $scope.submit = function () {
-                $http.post(urls.authenticate, {
+                $http.post(urls.account_authenticate, {
                     email: $scope.email,
                     password: $scope.password,
                     remember: $scope.remember,
-                    google_code: $scope.google_code,
-                    fb_code: $scope.fb_code
+                    google_token: $scope.google_token,
+                    fb_token: $scope.fb_token
                 })
                 .success(function(resp) {
                     alert('yay');
@@ -37,6 +37,10 @@ $.PayPerTrade.directive('loginForm', function ($http) {
                     alert(resp);
                 });
             };
+            $scope.$on('google_signin', function(event, resp) {
+                $scope.email = resp.email;
+                $scope.submit();
+            });
         }
     }
 });

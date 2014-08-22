@@ -13,19 +13,20 @@ class AccountController(BaseCtrl):
 
     #TODO https
     def authenticate(self):
+        import ipdb; ipdb.set_trace()
         email = self.data('email')
-        password = self.data('password')
-        remember = self.data('remember')
-
         user = model.User.find(email=email)
 
-        #TODO differentiate between post and json requests
-        # best to add a helper in global use in this case
-        if user and user.authenticate(password):
-            h.save_user(user.id, remember=remember)
-            h.redirect_to(controller='account', action='home')
-        else:
-            h.redirect_to(controller='base', action='index')
+        if user:
+            remember = self.data('remember')
+            google_token = self.data('google_token')
+            password = self.data('password')
+
+            if user.authenticate(password=password, google_token=google_token):
+                h.save_user(user.id, remember=remember)
+                h.redirect_to(controller='account', action='home')
+
+        h.redirect_to(controller='base', action='index')
 
     def home(self):
         if h.user():

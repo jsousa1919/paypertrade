@@ -8,10 +8,10 @@
     %else:
         <div>
             You are sooo sleeping on the couch tonight unless you 
-            <a href="${ h.url_for(controller='account', action='signin') }">Sign in</a>
+            <a href="${ h.url_for(controller='account', action='signin', secure=True) }">Sign in</a>
         </div>
         <div>
-            <a href="${ h.url_for(controller='base', action='signup') }">Sign up</a>
+            <a href="${ h.url_for(controller='base', action='signup', secure=True) }">Sign up</a>
         </div>
     %endif
 </div>

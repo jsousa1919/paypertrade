@@ -1,3 +1,4 @@
+import simplejson
 from paypertrade.lib.base import *
 
 class AccountController(BaseCtrl):
@@ -13,7 +14,6 @@ class AccountController(BaseCtrl):
 
     #TODO https
     def authenticate(self):
-        import ipdb; ipdb.set_trace()
         email = self.data('email')
         user = model.User.find(email=email)
 
@@ -24,9 +24,9 @@ class AccountController(BaseCtrl):
 
             if user.authenticate(password=password, google_token=google_token):
                 h.save_user(user.id, remember=remember)
-                h.redirect_to(controller='account', action='home')
+                return simplejson.dumps({'status': 'success'})
 
-        h.redirect_to(controller='base', action='index')
+        return simplejson.dumps({'status': 'error'})
 
     def home(self):
         if h.user():
@@ -35,7 +35,6 @@ class AccountController(BaseCtrl):
             h.redirect_to(controller='account', action='signin')
 
     def google_callback(self):
-        import ipdb; ipdb.set_trace()
         error = request.params.get('error')
         if error:
             return error

@@ -81,7 +81,6 @@ def url_for(*arg, **kw):
     if not kw.get('controller'):
         kw['controller'] = current_route('controller')
 
-
     if request.environ.get('HTTP_X_URL_SCHEME', '').lower() == 'https':
         prefix = 'https'
     elif kw.get('secure'):

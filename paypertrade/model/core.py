@@ -49,9 +49,9 @@ class User(Base):
         if google_token:
             # TODO best practices on secure, reversible, token storage
             # TODO token refresh
-            return user.google_token == google_token
+            return self.google_token == google_token
         else:
-            return bcrypt.checkpw(password or '', self.password)
+            return bcrypt.checkpw(password or '', self.password or '')
 
 
 class Book(Base):

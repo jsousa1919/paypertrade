@@ -1,5 +1,6 @@
 function google_authenticate(authResult) {
-    if (authResult['status']['signed_in']) {
+    if (!$.GlobalCtrl.signed_in && authResult.status.signed_in) {
+        $.GlobalCtrl.signed_in = true;
         $.GlobalCtrl.google_login(authResult);
         gapi.client.load('oauth2', 'v2', function() {
             gapi.client.oauth2.userinfo.get().execute(function(resp) {

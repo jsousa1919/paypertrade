@@ -17,6 +17,7 @@
         ${ self.head() }
         <script>
             $(document).ready(function () {
+                $.GlobalCtrl.signed_in = ${ 'true' if h.user() else 'false' };
                 ${ self.ready() }
             });
         </script>
@@ -42,18 +43,11 @@
         <div id="body" class="row-fluid">
             ${ next.body() }
         </div>
-        <script type="text/javascript">
-            (function() {
-                var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-                po.src = 'https://apis.google.com/js/client:plusone.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-                }
-            )();
-         </script>
+        ${ self.post() }
     </body>
 </html>
 <%def name="head()"></%def>
 <%def name="title()"></%def>
 <%def name="ready()"></%def>
 <%def name="headers()"></%def>
-
+<%def name="post()"></%def>

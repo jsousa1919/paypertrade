@@ -3,15 +3,15 @@ $.PayPerTrade = angular.module('PayPerTrade', []);
 $.PayPerTrade.service('GlobalService', function($rootScope) {});
 
 $.PayPerTrade.controller('GlobalCtrl', function($scope, GlobalService) {
-    $scope.urls = urls;
     $.GlobalCtrl = $scope;
+    $scope.urls = urls;
 
     $scope.google_login = function(authResult) {
         $scope.google_token = authResult.access_token;
     };
 });
 
-$.PayPerTrade.directive('loginForm', function ($http) {
+$.PayPerTrade.directive('loginForm', function ($rootScope, $http) {
     return {
         restrict: 'E',
         templateUrl: '/partials/signin.html',
@@ -27,11 +27,11 @@ $.PayPerTrade.directive('loginForm', function ($http) {
                     email: $scope.email,
                     password: $scope.password,
                     remember: $scope.remember,
-                    google_token: $scope.google_token,
-                    fb_token: $scope.fb_token
+                    google_token: $.GlobalCtrl.google_token,
+                    fb_token: $.GlobalCtrl.fb_token
                 })
                 .success(function(resp) {
-                    alert('yay');
+                    window.open($.GlobalCtrl.urls.account_home, '_self');
                 })
                 .error(function(resp) {
                     alert(resp);
